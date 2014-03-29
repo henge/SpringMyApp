@@ -6,10 +6,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Welcome</title>
+    <title>${title}</title>
   </head>
   <body>
-    <h2>${message}</h2>
+    <h1>${title}</h1>
+    <p>${message}</p>
   
     <form:form modelAttribute="formModel">
       <form:input path="input1" />
