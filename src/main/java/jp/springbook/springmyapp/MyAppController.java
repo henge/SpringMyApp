@@ -3,7 +3,11 @@ package jp.springbook.springmyapp;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -61,4 +65,49 @@ public class MyAppController {
 		return list;
 	}
 	
+	private List<VModel> buylist = new ArrayList<VModel>();
+	
+//	@RequestMapping(value = "/val", method = RequestMethod.GET)
+//	public ModelAndView val() {
+//		ModelAndView modelAndView = new ModelAndView("validation");
+//		modelAndView.addObject("vModel", new ValidationModel());
+//		return modelAndView;
+//	}
+	
+//	@RequestMapping(value = "/val", method = RequestMethod.POST)
+//	public ModelAndView valPost1(@Valid @ModelAttribute ValidationModel vModel, BindingResult result) {
+//		ModelAndView modelAndView = new ModelAndView("validation");
+//		if (result.hasErrors()) {
+////			modelAndView.addObject("vModel", vModel);
+//		} else {
+//			
+//	//		modelAndView.addObject("vModel", vModel);
+//			buylist.add(vModel);
+//			modelAndView.addObject("vModel", new ValidationModel());
+//		}
+//		modelAndView.addObject("buylist", buylist);
+//		return modelAndView;
+//	}
+	
+	@RequestMapping(value = "/val", method = RequestMethod.GET)
+	public String val(Model model) {
+		model.addAttribute("vModel", new VModel());
+		model.addAttribute("buylist", buylist);
+		
+		return "validation";
+	}
+	
+	@RequestMapping(value = "/val", method = RequestMethod.POST)
+	public String valPost(@Valid @ModelAttribute VModel vModel, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+//			model.addAttribute("vModel", vModel);
+		} else {
+			
+			//		modelAndView.addObject("vModel", vModel);
+			buylist.add(vModel);
+			model.addAttribute("vModel", new VModel());
+		}
+		model.addAttribute("buylist", buylist);
+		return "validation";
+	}
 }
