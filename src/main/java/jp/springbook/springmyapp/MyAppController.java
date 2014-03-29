@@ -1,6 +1,7 @@
 package jp.springbook.springmyapp;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -15,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MyAppController {
-
 	@RequestMapping(value = "/helo", method = RequestMethod.GET)
 	public ModelAndView helo() {
 
@@ -65,47 +65,27 @@ public class MyAppController {
 		return list;
 	}
 	
-	private List<VModel> buylist = new ArrayList<VModel>();
-	
-//	@RequestMapping(value = "/val", method = RequestMethod.GET)
-//	public ModelAndView val() {
-//		ModelAndView modelAndView = new ModelAndView("validation");
-//		modelAndView.addObject("vModel", new ValidationModel());
-//		return modelAndView;
-//	}
-	
-//	@RequestMapping(value = "/val", method = RequestMethod.POST)
-//	public ModelAndView valPost1(@Valid @ModelAttribute ValidationModel vModel, BindingResult result) {
-//		ModelAndView modelAndView = new ModelAndView("validation");
-//		if (result.hasErrors()) {
-////			modelAndView.addObject("vModel", vModel);
-//		} else {
-//			
-//	//		modelAndView.addObject("vModel", vModel);
-//			buylist.add(vModel);
-//			modelAndView.addObject("vModel", new ValidationModel());
-//		}
-//		modelAndView.addObject("buylist", buylist);
-//		return modelAndView;
-//	}
+	private List<ValidModel> buylist = new ArrayList<ValidModel>();
 	
 	@RequestMapping(value = "/val", method = RequestMethod.GET)
 	public String val(Model model) {
-		model.addAttribute("vModel", new VModel());
+		ValidModel validModel = new ValidModel();
+		model.addAttribute("validModel", validModel);
 		model.addAttribute("buylist", buylist);
 		
 		return "validation";
 	}
 	
 	@RequestMapping(value = "/val", method = RequestMethod.POST)
-	public String valPost(@Valid @ModelAttribute VModel vModel, BindingResult result, Model model) {
+	public String valPost(@Valid @ModelAttribute ValidModel validModel, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 //			model.addAttribute("vModel", vModel);
 		} else {
 			
 			//		modelAndView.addObject("vModel", vModel);
-			buylist.add(vModel);
-			model.addAttribute("vModel", new VModel());
+			validModel.setBuydate(new Date());
+			buylist.add(validModel);
+			model.addAttribute("validModel", new ValidModel());
 		}
 		model.addAttribute("buylist", buylist);
 		return "validation";

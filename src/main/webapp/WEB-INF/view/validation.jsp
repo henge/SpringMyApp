@@ -13,10 +13,10 @@
 <body>
   <h2>バリデーションのサンプル</h2>
   <table>
-    <form:form modelAttribute="vModel">
+    <form:form modelAttribute="validModel">
       <tr>
-      	<td></td>
-      	<td><form:errors path="*" element="div" /></td>
+        <td></td>
+        <td><form:errors path="*" element="div" /></td>
       </tr>
       <tr>
         <td><form:label path="item">商品名</form:label></td>
@@ -36,7 +36,7 @@
       </tr>
     </form:form>
   </table>
-  
+
   <c:if test="${buylist != null}">
     <table border="1">
       <tr>

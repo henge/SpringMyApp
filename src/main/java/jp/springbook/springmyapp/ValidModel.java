@@ -6,7 +6,7 @@ import javax.validation.constraints.Min;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-public class VModel {
+public class ValidModel {
 	@NotEmpty
 	private String item;
 	
