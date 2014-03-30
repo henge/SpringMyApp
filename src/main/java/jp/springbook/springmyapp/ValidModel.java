@@ -15,6 +15,7 @@ public class ValidModel {
 	
 	private Date buydate;
 	
+	@Phone(onlyNumber = true)
 	private String memo;
 
 	public String getItem() {

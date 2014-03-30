@@ -15,20 +15,25 @@
   <table>
     <form:form modelAttribute="validModel">
       <tr>
-        <td></td>
-        <td><form:errors path="*" element="div" /></td>
-      </tr>
-      <tr>
         <td><form:label path="item">商品名</form:label></td>
-        <td><form:input path="item" size="20" /></td>
+        <td>
+          <form:input path="item" size="20" />
+          <form:errors path="item" cssStyle="color:red" />
+        </td>
       </tr>
       <tr>
         <td><form:label path="price">金額</form:label></td>
-        <td><form:input path="price" size="20" /></td>
+        <td>
+          <form:input path="price" size="20" />
+          <form:errors path="price" cssStyle="color:red" />
+        </td>
       </tr>
       <tr>
         <td><form:label path="memo">メモ</form:label></td>
-        <td><form:input path="memo" size="20" /></td>
+        <td>
+          <form:textarea path="memo" cols="20" rows="5" />
+          <form:errors path="memo" cssStyle="color:red" />
+        </td>
       </tr>
       <tr>
         <td></td>
