@@ -27,7 +27,8 @@ public class MyDataDaoImpl implements MyDataDao<MyData> {
 	public void add(MyData entity) {
 		EntityManager manager = factory.createEntityManager();
 		EntityTransaction transaction = manager.getTransaction();
-		transaction.begin();manager.persist(entity);
+		transaction.begin();
+		manager.persist(entity);
 		transaction.commit();
 		manager.close();
 	}
